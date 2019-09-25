@@ -3,7 +3,7 @@
 const BASE_URL = "http://localhost:3000";
 const TRAINERS_URL = `${BASE_URL}/trainers/`;
 const POKEMONS_URL = `${BASE_URL}/pokemons/`;
-const cardCollection = document.getElementById("cards-collection");
+const cardCollection = document.querySelector("main");
 
 // api
 
@@ -46,8 +46,7 @@ function getCards() {
 function addPokemon(currentTrainer) {
   data = { trainer_id: currentTrainer.id };
   API.post(POKEMONS_URL, data).then(pokemon =>
-    renderPokemon(pokemon, currentTrainer)
-  );
+    location.reload())
 }
 
 function renderCards(currentTrainer) {
@@ -90,7 +89,7 @@ function renderPokemon(pokemon, currentTrainer) {
 }
 
 function releasePokemon(pokemonId) {
-  API.destroy(POKEMONS_URL, pokemonId).then(removePokemon(pokemonId));
+  API.destroy(POKEMONS_URL, pokemonId).then(location.reload());
 }
 
 function removePokemon(id) {
